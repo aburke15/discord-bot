@@ -11,8 +11,9 @@ public class Bot {
                     .setStatus(OnlineStatus.ONLINE)
                     .setActivity(Activity.playing("Hello, world!"));
 
-            // builder.addEventListeners(new PingPongListener());
-            // builder.addEventListeners(new CatGifListener());
+            builder.addEventListeners(new PingPongListener());
+            builder.addEventListeners(new CatJpgListener());
+
             builder.build();
         } catch (Exception e) {
             System.out.println(e.getMessage());

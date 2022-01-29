@@ -1,7 +1,13 @@
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.net.URL;
+
+import javax.imageio.ImageIO;
+
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
-public class PingPongListener extends ListenerAdapter {
+public class CatJpgListener extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
@@ -12,11 +18,21 @@ public class PingPongListener extends ListenerAdapter {
             String content = event.getMessage()
                     .getContentRaw();
 
-            if (content.equals("!ping")) {
+            URL urlInput = new URL("https://cataas.com/cat");
+            BufferedImage urlImage = ImageIO.read(urlInput);
+
+            File file = new File("cat.jpg");
+            ImageIO.write(urlImage, "jpg", file);
+
+            if (content.equals("!cat")) {
                 event.getChannel()
-                        .sendMessage("Pong!")
+                        .sendFile(file, file.getName())
                         .queue();
             }
+
+            if (file.exists())
+                file.delete();
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
 
@@ -25,4 +41,5 @@ public class PingPongListener extends ListenerAdapter {
                     .queue();
         }
     }
+
 }
