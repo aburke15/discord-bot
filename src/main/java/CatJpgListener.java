@@ -1,8 +1,4 @@
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.net.URL;
-
-import javax.imageio.ImageIO;
 
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -15,11 +11,8 @@ public class CatJpgListener extends ListenerAdapter {
             if (event.getAuthor().isBot())
                 return; // We don't want to respond to other bot accounts, including ourself
 
-            URL urlInput = new URL("https://cataas.com/cat");
-            BufferedImage urlImage = ImageIO.read(urlInput);
-
-            File file = new File("cat.jpg");
-            ImageIO.write(urlImage, "jpg", file);
+            String url = "https://cataas.com/cat";
+            File file = ImageHelper.urlImageToFile(url);
 
             String content = event.getMessage()
                     .getContentRaw();
