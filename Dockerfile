@@ -18,10 +18,10 @@ RUN gradle clean shadow
 
 # actual container
 FROM openjdk:11.0.13-jre
-ENV ARTIFACT_NAME=*.jar
+ENV ARTIFACT_NAME=DiscordBot-1.0-SNAPSHOT-all.jar
 ENV APP_HOME=/usr/app/
 
 WORKDIR $APP_HOME
 COPY --from=build $APP_HOME/build/libs/$ARTIFACT_NAME .
 
-ENTRYPOINT exec java -jar ${ARTIFACT_NAME}
+ENTRYPOINT exec java -jar ${ARTIFACT_NAME} "TOKEN"
