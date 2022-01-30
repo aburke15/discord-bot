@@ -15,14 +15,14 @@ public class CatJpgListener extends ListenerAdapter {
             if (event.getAuthor().isBot())
                 return; // We don't want to respond to other bot accounts, including ourself
 
-            String content = event.getMessage()
-                    .getContentRaw();
-
             URL urlInput = new URL("https://cataas.com/cat");
             BufferedImage urlImage = ImageIO.read(urlInput);
 
             File file = new File("cat.jpg");
             ImageIO.write(urlImage, "jpg", file);
+
+            String content = event.getMessage()
+                    .getContentRaw();
 
             if (content.equals("!cat")) {
                 event.getChannel()
