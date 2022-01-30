@@ -6,6 +6,8 @@ public class Bot {
     public static void main(String[] args) {
         try {
             String token = args[0];
+            System.out.println("Token: " + token);
+
             JDABuilder builder = JDABuilder
                     .createDefault(token)
                     .setStatus(OnlineStatus.ONLINE)
