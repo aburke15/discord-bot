@@ -4,7 +4,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 public class PingPongListener extends ListenerAdapter {
 
     @Override
-    public void onMessageReceived(MessageReceivedEvent event) {
+    public void onMessageReceived(final MessageReceivedEvent event) {
         try {
             if (event.getAuthor().isBot())
                 return; // We don't want to respond to other bot accounts, including ourself
@@ -12,7 +12,7 @@ public class PingPongListener extends ListenerAdapter {
             String content = event.getMessage()
                     .getContentRaw();
 
-            if (content.equals("!ping")) {
+            if (content.equalsIgnoreCase("!ping")) {
                 event.getChannel()
                         .sendMessage("Pong!")
                         .queue();
